@@ -1,0 +1,16 @@
+choice = input("เลือกสกุลเงิน ( EUR , USD , JPY ): ")
+
+if choice == "EUR":
+    EUR = float(input("EUR : "))
+    THB = EUR / 37.0
+    print ( THB ,"บาท")
+elif choice == "USD":
+    USD = float(input("USD : "))
+    THB = USD / 34.5
+    print ( THB ,"บาท")
+elif choice == "JPY":
+    JPY = float(input("JPY : "))
+    THB = JPY / 0.22
+    print ( THB ,"บาท")
+else:
+    print("ตัวเลือกไม่ถูกต้อง")
