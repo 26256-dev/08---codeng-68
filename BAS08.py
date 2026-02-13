@@ -1,0 +1,71 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def convert():
+    try:
+        amount = float(entry_amount.get())
+        currency = choice.get()
+
+        if currency == "EUR":
+            thb = amount * 37.0
+        elif currency == "USD":
+            thb = amount * 34.5
+        elif currency == "JPY":
+            thb = amount * 0.22
+        else:
+            messagebox.showerror("Error", "กรุณาเลือกสกุลเงิน")
+            return
+
+        result_label.config(text=f"{thb:.2f} บาท")
+
+    except ValueError:
+        messagebox.showerror("Error", "กรุณากรอกตัวเลข")
+
+# สร้างหน้าต่างหลัก
+root = tk.Tk()
+root.title("U.coin")
+root.geometry("320x250")
+root.configure(bg="#1e1e2f")  # สีพื้นหลัง
+
+# ชื่อโปรแกรม
+tk.Label(
+    root,
+    text="U.coin",
+    font=("Arial", 18, "bold"),
+    bg="#1e1e2f",
+    fg="#00f5d4"   # สีตัวอักษร
+).pack(pady=10)
+
+# ตัวเลือกสกุลเงิน
+choice = tk.StringVar()
+choice.set("EUR")
+
+tk.Label(root, text="เลือกสกุลเงิน", bg="#1e1e2f", fg="white").pack()
+tk.OptionMenu(root, choice, "EUR", "USD", "JPY").pack(pady=5)
+
+# ช่องกรอกจำนวนเงิน
+tk.Label(root, text="กรอกจำนวนเงิน", bg="#1e1e2f", fg="white").pack()
+entry_amount = tk.Entry(root, bg="#2b2b3c", fg="white", insertbackground="white")
+entry_amount.pack(pady=5)
+
+# ปุ่มแปลงค่า
+tk.Button(
+    root,
+    text="แปลงค่า",
+    command=convert,
+    bg="#00f5d4",
+    fg="black",
+    activebackground="#00c9a7"
+).pack(pady=10)
+
+# แสดงผลลัพธ์
+result_label = tk.Label(
+    root,
+    text="0 บาท",
+    font=("Arial", 14, "bold"),
+    bg="#1e1e2f",
+    fg="#ffcc00"
+)
+result_label.pack(pady=5)
+
+root.mainloop()
